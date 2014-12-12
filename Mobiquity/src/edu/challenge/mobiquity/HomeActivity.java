@@ -253,16 +253,17 @@ public class HomeActivity extends Activity {
 	 */
 	private void saveCoordinates(String fileName) { 
 		try {
-			ExifInterface exif = new ExifInterface(fileName);
-			exif.setAttribute(ExifInterface.TAG_GPS_LATITUDE
-					, mLastKnownLocation.getLatitude() + "");
-			exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, 
-					mLastKnownLocation.getLongitude() + "");
-			exif.saveAttributes();
-			Log.d("LOCATION - LAT: ", mLastKnownLocation.getLatitude() + "");
-			Log.d("LOCATION - LONG: ", mLastKnownLocation.getLongitude() + "");
+			if(mLastKnownLocation != null) {
+				ExifInterface exif = new ExifInterface(fileName);
+				exif.setAttribute(ExifInterface.TAG_GPS_LATITUDE
+						, mLastKnownLocation.getLatitude() + "");
+				exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, 
+						mLastKnownLocation.getLongitude() + "");
+				exif.saveAttributes();
+				Log.d("LOCATION - LAT: ", mLastKnownLocation.getLatitude() + "");
+				Log.d("LOCATION - LONG: ", mLastKnownLocation.getLongitude() + "");
 
-
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
